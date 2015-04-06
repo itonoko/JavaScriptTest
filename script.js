@@ -1,5 +1,42 @@
-var test = {
-    hoge: 3
+var player = {
+    mana: 100,
+
+    strength: 5,
+    intelligence: 5,
+    spirit: 5,
+    physical: 5,
+    technique: 5,
+
+    hp: 100,
+    mp: 20,
+    offence: 20,
+    deffence: 10,
+
+};
+
+var enemy = {
+    name: 'A',
+    hp: 100,
+    mp: 10,
+    offence: 20,
+    deffence: 10,
+    mana: 20,
+};
+
+var battle = {
+    
+};
+
+var field = {
+    name:'“¹',
+    clear: false,
+    wave:[],
+};
+
+var town = {
+    levelup: function () {
+        
+    }
 };
 
 var foo = { 
