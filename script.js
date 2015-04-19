@@ -24,13 +24,11 @@ var enemy = {
     behavior:[1,2,1,2],
 };
 
-
-
 // 探索する場所
 // 1の場所は複数のWaveからなりたつ
 // 1Waveに戦闘やイベントが発生。
 // Waveを最後までやりきると次の探索場所がオープン
-var field = {
+var stage = {
     name:'道',
     clear: false,
     wave:[],
@@ -52,8 +50,8 @@ var battle = {
     }
 };
 
-var town = {
-    // 店 / 強化 / 修練
+var field = {
+    // 店 / 強化 / 修練 / 所持品
     init:function(){
         var main = document.getElementById('main');
         var button = document.createElement('button');
@@ -72,10 +70,34 @@ var town = {
             }
         }
     },
+    
+    createButton: function(id, text, event) {
+        var main = document.getElementById('main');
+        var button = document.createElement('button');
+        battle.id = 'strength';
+        button.addEventListener('click', field.levelupEvent);
+        button.innerText = '力';
+        main.appendChild(button);
+    },
 
     levelup: function () {
-        
+        field.createButton('strength', '力', event);
+        field.createButton('intelligence', '知', event);
+        field.createButton('spirit', '心', event);
+        field.createButton('technique', '技', event);
+        field.createButton('strength', '体', event);
+    },
+
+    levelupEvent: function (event) {
+        player.mana -= 50;
+        if (event.target.id == 'upgrade') {
+            if (player.mana <= 0) {
+                var o = document.getElementById(event.target.id);
+                o.disabled = true;
+            }
+        }
     }
+},
 };
 
 var main = {
@@ -101,6 +123,10 @@ var main = {
         catch (e) {
 
         }
+    },
+
+    reset: function () {
+
     },
 
     func: function () {
